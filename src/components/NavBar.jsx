@@ -8,7 +8,7 @@ const NavBar = () => {
             <Toolbar variant="dense" sx={{ justifyContent: 'center' }}>
                 <Button
                     component={Link}
-                    to="/dashboard"
+                    to="/afam-dashboard"
                     sx={{
                         color: '#fff',
                         mx: 1,
