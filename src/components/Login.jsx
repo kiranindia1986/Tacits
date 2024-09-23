@@ -12,7 +12,7 @@ const Login = () => {
         // Add login validation here
         if (username === "admin" && password === "admin") { // Default credentials for now
             if (project === "AFAM") {
-                navigate("/afam-dashboard");
+                navigate("/AFAMDashboard");
             } else if (project === "TACITS") {
                 navigate("/tacits-dashboard");
             } else {
