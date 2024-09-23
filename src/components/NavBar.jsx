@@ -8,7 +8,7 @@ const NavBar = () => {
             <Toolbar variant="dense" sx={{ justifyContent: 'center' }}>
                 <Button
                     component={Link}
-                    to="/afam-dashboard"
+                    to="/AFAMDashboard"
                     sx={{
                         color: '#fff',
                         mx: 1,
@@ -23,125 +23,7 @@ const NavBar = () => {
                 >
                     Dashboard
                 </Button>
-                <Button
-                    component={Link}
-                    to="/scenarios"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Scenarios
-                </Button>
-                <Button
-                    component={Link}
-                    to="/instructor"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Instructor
-                </Button>
-                <Button
-                    component={Link}
-                    to="/support"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Support
-                </Button>
-                <Button
-                    component={Link}
-                    to="/om"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    O&M
-                </Button>
-                <Button
-                    component={Link}
-                    to="/certification"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Certification
-                </Button>
-                <Button
-                    component={Link}
-                    to="/export"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Export
-                </Button>
-                <Button
-                    component={Link}
-                    to="/master-data"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Master Data
-                </Button>
+
             </Toolbar>
         </AppBar>
     );
