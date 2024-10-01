@@ -8,6 +8,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth'; // Import Firebase Auth
 
 const Dashboard = () => {
     const [schoolCodes, setSchoolCodes] = useState([]);  // To store school codes
@@ -16,6 +17,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();  // Use React Router's useNavigate for page navigation
+    const auth = getAuth(); // Get Firebase Auth instance
 
     // Fetch school codes from Firebase
     useEffect(() => {
@@ -133,9 +135,32 @@ const Dashboard = () => {
         navigate('/instructor', { state: { course } });  // Navigate to Instructor page with course data
     };
 
+    // Handle logout
+    const handleLogout = async () => {
+        try {
+            await signOut(auth); // Firebase sign out
+            navigate('/login'); // Navigate to the login page after logout
+            toast.success("Logged out successfully");
+        } catch (error) {
+            toast.error("Error logging out");
+        }
+    };
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <CssBaseline />
+
+            {/* Logout Button at the top */}
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '10px', backgroundColor: '#f5f5f5' }}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleLogout}
+                    sx={{ marginRight: '10px' }}
+                >
+                    Logout
+                </Button>
+            </Box>
 
             <Box
                 sx={{
@@ -149,7 +174,6 @@ const Dashboard = () => {
             >
                 {/* School Code Dropdown */}
                 <Box sx={{ display: 'flex', gap: 2, marginBottom: '20px', width: '100%', maxWidth: '500px' }}>
-
                     <FormControl fullWidth>
                         <InputLabel>School Code</InputLabel>
                         <Select
@@ -257,7 +281,6 @@ const Dashboard = () => {
                                             <TableCell>1</TableCell>
                                             <TableCell>100%</TableCell>
                                         </TableRow>
-                                        {/* More rows here */}
                                     </TableBody>
                                 </Table>
                             </TableContainer>

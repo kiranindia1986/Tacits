@@ -1,0 +1,468 @@
+.header {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+
+.header-logo {
+    max-width: 100% !important;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tablinks {
+    background-color: #b33900;
+    /* Bootstrap primary blue */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* Slight shadow for depth */
+    margin-bottom: 1rem;
+    /* Space below the tab */
+    transition: background-color 0.3s;
+    /* Smooth background color transition on hover */
+}
+
+.tablinks h2 {
+    margin: 0;
+    /* Remove default margin from h2 */
+    color: inherit;
+    /* Inherit text color from parent */
+    font-size: 2rem;
+    /* Slightly larger font size */
+}
+
+.container1 {
+    display: flex;
+    width: 100% !important;
+    /* Full width of the container */
+}
+
+.hexagon-grid {
+    flex: 0 0 70%;
+    /* Takes up 75% of the container */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns of equal width */
+    grid-gap: 5px;
+    /* Minimal gap between items */
+    padding: 10px;
+    /* Padding around the grid for some breathing room */
+}
+
+.hexagon-item {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4c4c4c;
+    color: yellow;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+.info-box {
+    flex: 0 0 25%;
+    /* Takes up 25% of the container */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-left: 10px;
+    /* Space between the hexagon grid and the info box */
+    background-color: #f9f9f9;
+    /* Light background for the info box */
+    height: 500px;
+    /* Adjust height as necessary */
+    overflow: auto;
+    /* Adds scroll if content is too long */
+}
+
+.info-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info-note {
+    font-size: 14px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.info-subtitle {
+    color: #0077cc;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.info-box p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Additional decorative blue vertical bar */
+.info-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+}
+
+.hexagon-item:hover {
+    transform: scale(1.1);
+    background-color: #777;
+}
+
+.hex-content {
+    color: white;
+    text-align: center;
+    width: 90%;
+    /* Smaller width to fit inside hexagon shape */
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8em;
+    height: 80%;
+    /* Shorter height to maintain aspect ratio */
+    user-select: none;
+}
+
+.rounded-box {
+    background-color: #fff;
+    /* White background */
+    border: 1px solid #ddd;
+    /* Light gray border */
+    border-radius: 15px;
+    /* Rounded corners */
+    min-height: 100px;
+    /* Set a minimum height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.rounded-box:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* Larger shadow on hover for a "lifting" effect */
+}
+
+/* Bootstrap 4 spacing utilities */
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+/* Bootstrap 4 text-center class */
+.text-center {
+    text-align: center !important;
+}
+
+/* Make sure boxes don't wrap on larger screens */
+@media (min-width: 992px) {
+    .col-lg-2 {
+        max-width: 20%;
+        flex: 0 0 20%;
+    }
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.mt-10 {
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.bg-box-color-1 {
+    background-color: #f0f0f0;
+    /* Replace with your chosen color */
+}
+
+.bg-box-color-2 {
+    background-color: #d9e2ff;
+    /* Replace with your chosen color */
+}
+
+.bg-box-color-3 {
+    background-color: #c6e6d5;
+    /* Replace with your chosen color */
+}
+
+.bg-box-color-4 {
+    background-color: #fde4cf;
+    /* Replace with your chosen color */
+}
+
+.bg-box-color-5 {
+    background-color: #fff4e6;
+    /* Replace with your chosen color */
+}
+
+.bg-box-color-6 {
+    background-color: #b8a9c9;
+    /* Replace with the color you prefer */
+}
+
+/* Add this to provide some spacing from the top */
+.mt-10-percent {
+    margin-top: 10%;
+}
+
+.header1 {
+    background-color: #0056b3;
+    /* Adjust the color to match your design */
+    color: white;
+}
+
+.bg-header {
+    background-color: #333;
+    /* This color is for the header background */
+    margin-bottom: 10px;
+    /* Spacing after the header */
+    color: white;
+}
+
+.rounded-info-box {
+    border-radius: 15px;
+    background-color: #007bff;
+    /* Change this color as needed */
+    padding: 5px;
+    margin-bottom: 15px;
+    /* Spacing after the box */
+    border: none;
+}
+
+.rounded-info-box p {
+    margin: 0;
+    color: #fff;
+    /* White text color */
+}
+
+.step-header {
+    margin-top: 10px;
+}
+
+.step-header h4 {
+    color: #0056b3;
+    /* Adjust the color to match your design */
+    margin-bottom: 5px;
+}
+
+.quota-dropdown-container {
+    margin: 20px 0;
+}
+
+.quota-dropdown {
+    width: 100%;
+    /* Full-width select box */
+    padding: 10px;
+    /* Padding inside the select box */
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    /* Bootstrap's default border color for forms */
+}
+
+.step-container {
+    margin-top: 2rem;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #f0f0f0;
+}
+
+.step-header {
+    color: #007bff;
+}
+
+.step-description {
+    margin-bottom: 1rem;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.option-label {
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.option-label:hover,
+.option-label:focus {
+    background-color: #e7f5ff;
+}
+
+.continue-button {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+    background-color: #0056b3;
+}
+
+input[type='radio']:checked+label {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#goBackQuotaSource {
+    width: 100px;
+    /* Set the width as necessary */
+    height: 50px;
+    /* Set the height as necessary */
+}
+
+#selectedQuotaSource {
+    font-weight: bold;
+    /* Makes the text bold */
+}
+
+/* Assuming you want to keep the specific ID styles */
+#NewTabContent {
+    padding-top: 1rem;
+    /* Adds spacing to the top */
+    padding-bottom: 1rem;
+    /* Adds spacing to the bottom */
+    background-color: #f8f9fa;
+    /* A light grey background */
+    border-radius: 0.25rem;
+    /* Rounded corners */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    /* A subtle shadow */
+}
+
+/* Optional: Custom styles if needed */
+.table-responsive-md {
+    margin-bottom: 1rem;
+    /* Adds bottom margin */
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    /* Smaller padding for small buttons */
+    font-size: 0.875rem;
+    /* Smaller font size for small buttons */
+    line-height: 1.5;
+    /* Line height for button text */
+    border-radius: 0.2rem;
+    /* Slightly rounded corners for buttons */
+}
+
+/* Style for the selected quota source display */
+#selectedQuotaSource {
+    font-size: 1rem;
+    /* Set font size for the selected quota source text */
+    font-weight: bold;
+    /* Bold font weight for emphasis */
+    padding: 0.5rem;
+    /* Padding inside the display area */
+    margin-top: 1rem;
+    /* Margin above the display area */
+    display: inline-block;
+    /* To enable margin and padding */
+}
+
+.table-row-light {
+    background-color: #f8f9fa;
+    /* Light gray background for even rows */
+}
+
+.table-row-dark {
+    background-color: #e9ecef;
+    /* Slightly darker background for odd rows */
+}
+
+.btn-primary {
+    margin-right: 10px;
+    /* Ensure the button has some space on the right if the next cell is empty */
+    color: #fff;
+}
+
+.table thead th {
+    background-color: #007bff !important;
+    /* Bootstrap primary color */
+    color: white;
+}
+
+/* Style for the table body */
+.table tbody tr {
+    background-color: #f8f9fa;
+    /* A light grey background for the body */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    #excelDataTable {
+        padding: 10px;
+    }
+
+    .btn {
+        margin-top: 10px;
+        /* add space between buttons on small screens */
+    }
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-warning {
+    background-color: #856404;
+    border-color: #856404;
+}
+
+#excelDataTable {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

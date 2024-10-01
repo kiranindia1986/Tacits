@@ -1,0 +1,75 @@
+/* Styles for NavBar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Space between title and buttons */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #b33e00;
+    /* Background color for NavBar */
+    color: white;
+}
+
+/* Title Styling */
+.navbar-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Right side buttons container */
+.navbar-buttons {
+    display: flex;
+    gap: 10px;
+    /* Space between buttons */
+}
+
+/* Dashboard Button Styling */
+.dashboard-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #b33e00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-button:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* Master Button Styling */
+.master-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #b33e00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.master-button:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* Logout Button Styling */
+.logout-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #b33e00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d9534f;
+    color: white;
+}

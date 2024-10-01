@@ -14,7 +14,7 @@ const Login = () => {
             if (project === "AFAM") {
                 navigate("/AFAMDashboard");
             } else if (project === "TACITS") {
-                navigate("/tacits-dashboard");
+                navigate("/TACITSDashboard");
             } else {
                 alert("Please select a project.");
             }
