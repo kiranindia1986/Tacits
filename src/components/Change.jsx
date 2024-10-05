@@ -185,7 +185,7 @@ const Change = () => {
                             name="qs"
                             value={formData.qs}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -196,7 +196,7 @@ const Change = () => {
                             name="schoolCode"
                             value={formData.schoolCode}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -207,7 +207,7 @@ const Change = () => {
                             name="level"
                             value={formData.level}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     {/* New Description Field */}
@@ -219,7 +219,7 @@ const Change = () => {
                             name="description"
                             value={formData.description}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -230,7 +230,7 @@ const Change = () => {
                             name="cp"
                             value={formData.cp}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -241,7 +241,7 @@ const Change = () => {
                             name="origReq2016"
                             value={formData.origReq2016}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -252,7 +252,7 @@ const Change = () => {
                             name="avgReq2017"
                             value={formData.avgReq2017}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -263,7 +263,7 @@ const Change = () => {
                             name="avgReq2010_2012"
                             value={formData.avgReq2010_2012}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -274,7 +274,7 @@ const Change = () => {
                             name="inputs2012"
                             value={formData.inputs2012}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -285,7 +285,7 @@ const Change = () => {
                             name="currentTrap"
                             value={formData.currentTrap}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -296,7 +296,7 @@ const Change = () => {
                             name="adjustedReq2014"
                             value={formData.adjustedReq2014}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -307,7 +307,7 @@ const Change = () => {
                             name="fy2016Req"
                             value={formData.fy2016Req}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -318,7 +318,7 @@ const Change = () => {
                             name="fy2017Req"
                             value={formData.fy2017Req}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -329,7 +329,7 @@ const Change = () => {
                             name="fy2016LastLID"
                             value={formData.fy2016LastLID}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -340,7 +340,7 @@ const Change = () => {
                             name="fy2017LastLID"
                             value={formData.fy2017LastLID}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -351,7 +351,7 @@ const Change = () => {
                             name="highestInputs"
                             value={formData.highestInputs}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={4}>
@@ -362,7 +362,7 @@ const Change = () => {
                             name="yearsWithInputs"
                             value={formData.yearsWithInputs}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                     <Grid item xs={8}>
@@ -375,7 +375,7 @@ const Change = () => {
                             name="remarks"
                             value={formData.remarks}
                             onChange={handleInputChange}
-                            required
+
                         />
                     </Grid>
                 </Grid>

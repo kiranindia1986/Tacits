@@ -9,6 +9,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth'; // Import Firebase Auth
+import NavBar from "./NavBar";
+
 
 const Dashboard = () => {
     const [schoolCodes, setSchoolCodes] = useState([]);  // To store school codes
@@ -150,17 +152,8 @@ const Dashboard = () => {
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <CssBaseline />
 
-            {/* Logout Button at the top */}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '10px', backgroundColor: '#f5f5f5' }}>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleLogout}
-                    sx={{ marginRight: '10px' }}
-                >
-                    Logout
-                </Button>
-            </Box>
+            <NavBar /> {/* Include NavBar here */}
+
 
             <Box
                 sx={{

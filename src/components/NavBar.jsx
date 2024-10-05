@@ -1,31 +1,46 @@
-import React from 'react';
-import { AppBar, Toolbar, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import './NavBarT.css'; // Ensure the CSS file is properly linked
 
 const NavBar = () => {
-    return (
-        <AppBar position="static" sx={{ backgroundColor: '#4CAF50', padding: '10px 0' }}>
-            <Toolbar variant="dense" sx={{ justifyContent: 'center' }}>
-                <Button
-                    component={Link}
-                    to="/AFAMDashboard"
-                    sx={{
-                        color: '#fff',
-                        mx: 1,
-                        fontSize: '18px',
-                        fontFamily: 'APTOS-DISPLAY',
-                        textTransform: 'uppercase',
-                        '&:hover': {
-                            backgroundColor: '#388E3C',
-                            borderRadius: '8px',
-                        },
-                    }}
-                >
-                    Dashboard
-                </Button>
+    const navigate = useNavigate();
 
-            </Toolbar>
-        </AppBar>
+    // Handle logout logic (adjust based on your authentication method)
+    const handleLogout = () => {
+        // Perform logout actions (e.g., Firebase sign out or token removal)
+        // For Firebase signOut you can use: auth.signOut();
+        navigate('/login'); // Redirect to login page after logout
+    };
+
+    return (
+        <div className="navbar">
+            <h2 className="navbar-title">WELCOME TO AFAM</h2>
+
+            {/* Right side buttons */}
+            <div className="navbar-buttons">
+                <button
+                    className="dashboard-button"
+                    onClick={() => navigate("/TACITSDashboard")} // Add navigation to Dashboard
+                >
+                    GOTO TACITS
+                </button>
+                <button
+                    className="dashboard-button"
+                    onClick={() => navigate("/AFAMDashboard")} // Add navigation to Dashboard
+                >
+                    DASHBOARD
+                </button>
+
+                <button
+                    className="master-button"
+                    onClick={() => navigate("/master")} // Add navigation to Master
+                >
+                    MASTER
+                </button>
+
+
+            </div>
+        </div>
     );
 };
 

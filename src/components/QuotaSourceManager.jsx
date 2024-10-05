@@ -4,6 +4,8 @@ import "./TACITSDashboard.css"; // Assuming the same CSS styles are needed
 import NavBar from "./NavBarT";
 import { db } from "../firebaseConfig"; // Import your Firebase configuration
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
+import { toast } from 'react-toastify';
+
 
 const QuotaSourceManager = () => {
     const [schoolData, setSchoolData] = useState([]); // State to store school data
@@ -11,21 +13,26 @@ const QuotaSourceManager = () => {
     const [step2Data, setStep2Data] = useState([]); // State to store Step 2 data
     const [selectedStep2Option, setSelectedStep2Option] = useState(""); // Selected option for step 2
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
 
     // Fetch data from Firebase collection "schoolData"
     useEffect(() => {
         const fetchSchoolData = async () => {
             try {
-                const schoolCollection = collection(db, "schoolData"); // Reference to the collection
-                const schoolSnapshot = await getDocs(schoolCollection); // Fetch all documents
-                const schoolList = schoolSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })); // Map data
-                setSchoolData(schoolList); // Set the state with fetched data
+                const schoolCollection = collection(db, "schoolData");
+                const schoolSnapshot = await getDocs(schoolCollection);
+                const schoolList = schoolSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+                setSchoolData(schoolList);
+                console.log("School Data:", schoolList); // Log the fetched school data for debugging
+                setLoading(false); // Set loading to false after fetching
             } catch (error) {
                 console.error("Error fetching school data: ", error);
+                setLoading(false); // Set loading to false in case of error
             }
         };
 
-        fetchSchoolData(); // Call the fetch function on component mount
+        fetchSchoolData();
     }, []);
 
     // Fetch data for Step 2 from Firebase collection "step2Data"
@@ -58,10 +65,19 @@ const QuotaSourceManager = () => {
 
     // Navigate to Change Requirements page with selected school passed as state
     const handleContinue = () => {
+        console.log("Selected School:", selectedSchool);  // Log the selectedSchool for debugging
+        console.log("Selected Step2 Option:", selectedStep2Option);  // Log the selectedStep2Option for debugging
+
         if (selectedSchool && selectedStep2Option === "Review and Change Requirements") {
             navigate("/change-requirements", { state: { selectedSchool } });
+        } else if (selectedSchool && selectedStep2Option === "Add New Requirements") {
+            navigate("/add-new-requirements", { state: { selectedSchool } });  // Pass selectedSchool to the next page
+        } else {
+            toast.error("Please select a school and an option.");
         }
     };
+
+    if (loading) return <div>Loading...</div>; // Move this after the hooks
 
     return (
         <>

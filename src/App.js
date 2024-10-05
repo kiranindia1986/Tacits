@@ -14,6 +14,7 @@ import ReserveComponentSchool from './components/ReserveComponentSchool';  // Im
 import QuotaSourceManager from './components/QuotaSourceManager'; // Import the Quota Source Manager page
 import MasterT from './components/MasterT'; // Import the Master page component
 import ChangeRequirements from './components/ChangeRequirements';
+import AddNewRequirements from './components/AddNewRequirements';
 import CourseDetails from './components/CourseDetails';
 
 const App = () => {
@@ -37,8 +38,8 @@ const App = () => {
         <Route path="/quota-source-manager" element={<QuotaSourceManager />} />
         <Route path="/mastert" element={<MasterT />} /> {/* Route for Master page */}
         <Route path="/change-requirements" element={<ChangeRequirements />} /> {/* Route for Master page */}
+        <Route path="/add-new-requirements" element={<AddNewRequirements />} />
         <Route path="/CourseDetails" element={<CourseDetails />} /> {/* Route for Master page */}
-
       </Routes>
     </Router>
   );
