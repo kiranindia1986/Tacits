@@ -34,15 +34,26 @@ const Dashboard = () => {
     // Load selected school code from local storage on mount
     useEffect(() => {
         const savedSchoolCode = localStorage.getItem('selectedSchoolCode');
-        const savedTotalRequested = localStorage.getItem('totalCostSum') || '0.00'; // Get total requested from localStorage
 
+        const savedTotalRequested = parseFloat(localStorage.getItem('totalCostSum')) || 0.00;
+        const supportTotalFundingSum = parseFloat(localStorage.getItem('supportTotalFundingSum')) || 0.00;
+        const omTotalFundingSum = parseFloat(localStorage.getItem('omTotalFundingSum')) || 0.00;
+        const instructorTotalFundingSum = parseFloat(localStorage.getItem('totalFundingSum')) || 0.00;
+        const certificationTotalFundingSum = parseFloat(localStorage.getItem('certificationTotalFundingSum')) || 0.00;
+
+        // Combine the totals from different components
+        const newTotalRequested = savedTotalRequested + supportTotalFundingSum + omTotalFundingSum + instructorTotalFundingSum + certificationTotalFundingSum;
+
+        setTotalRequested(newTotalRequested.toFixed(2));
+        localStorage.setItem('totalCostSum', newTotalRequested.toFixed(2));
+
+        // Set the savedSchoolCode if it exists
         if (savedSchoolCode) {
-            setSelectedSchoolCode(savedSchoolCode);  // Set saved value if exists
-            fetchCourses(savedSchoolCode);  // Fetch courses for the saved school code
+            setSelectedSchoolCode(savedSchoolCode);
+            fetchCourses(savedSchoolCode);
         }
-        setTotalRequested(savedTotalRequested); // Set Total Requested state
-
     }, []);
+
 
     // Handle navigation to Master Data page
     const handleMasterDataClick = () => {

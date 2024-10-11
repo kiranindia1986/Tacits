@@ -114,6 +114,21 @@ const Instructor = () => {
         navigate('/AFAMDashboard');
     };
 
+    // Calculate the sum of the "Funding" column
+    const calculateFundingSum = () => {
+        return tableRows.reduce((sum, row) => {
+            const fundingValue = parseFloat(row.funding) || 0; // Parse as float, default to 0 if invalid
+            return sum + fundingValue;
+        }, 0);
+    };
+
+    // Save the total funding sum to localStorage whenever tableRows change
+    useEffect(() => {
+        const totalFundingSum = calculateFundingSum();
+        localStorage.setItem('totalFundingSum', totalFundingSum.toFixed(2)); // Save as a string with 2 decimal places
+    }, [tableRows]);
+
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', padding: '20px', backgroundColor: '#f8f9fa' }}>
             <Typography variant="h5" sx={{ marginBottom: '16px', textAlign: 'center', fontWeight: 'bold', color: '#343a40' }}>

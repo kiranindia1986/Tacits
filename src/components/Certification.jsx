@@ -226,6 +226,24 @@ const Certification = () => {
     const handlePrevPage = () => navigate('/om');
     const handleNextPage = () => navigate('/export');
 
+
+    // Calculate the sum of the total funding for all rows
+    const calculateTotalFundingSum = () => {
+        return tableRows.reduce((sum, row) => {
+            const travelCost = parseFloat(row.travelCost || 0);
+            const perDiem = parseFloat(row.perDiem || 0);
+            const payAndAllowances = parseFloat(row.payAndAllowances || 0);
+            const totalFunding = travelCost + perDiem + payAndAllowances;
+            return sum + totalFunding;
+        }, 0);
+    };
+
+    // Save the total funding sum to localStorage whenever tableRows change
+    useEffect(() => {
+        const totalFundingSum = calculateTotalFundingSum();
+        localStorage.setItem('certificationTotalFundingSum', totalFundingSum.toFixed(2)); // Save as a string with 2 decimal places
+    }, [tableRows]);
+
     return (
         <Box sx={{ padding: '20px', backgroundColor: '#f8f9fa' }}>
             <Typography variant="h5" sx={{ marginBottom: '16px', textAlign: 'center', fontWeight: 'bold', color: '#343a40' }}>
@@ -307,12 +325,16 @@ const Certification = () => {
                     displayEmpty
                 >
                     <MenuItem value="">Select Grade</MenuItem>
-                    {grades.map((grade, index) => (
-                        <MenuItem key={index} value={grade}>
-                            {grade}
-                        </MenuItem>
-                    ))}
+                    {grades
+                        .slice() // Create a shallow copy of the array
+                        .sort((a, b) => a.localeCompare(b)) // Sort the grades alphabetically
+                        .map((grade, index) => (
+                            <MenuItem key={index} value={grade}>
+                                {grade}
+                            </MenuItem>
+                        ))}
                 </Select>
+
                 <TextField
                     label="Quantity"
                     name="quantity"

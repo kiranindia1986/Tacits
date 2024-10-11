@@ -55,6 +55,23 @@ const Support = () => {
         setFormData((prevState) => ({ ...prevState, [name]: value }));
     };
 
+    // Calculate the sum of the total funding for all rows
+    const calculateTotalFundingSum = () => {
+        return tableRows.reduce((sum, row) => {
+            const travelCost = parseFloat(row.travelCost || 0);
+            const perDiem = parseFloat(row.perDiem || 0);
+            const payAndAllowances = parseFloat(row.payAndAllowances || 0);
+            const totalFunding = travelCost + perDiem + payAndAllowances;
+            return sum + totalFunding;
+        }, 0);
+    };
+
+    // Save the total funding sum to localStorage whenever tableRows change
+    useEffect(() => {
+        const totalFundingSum = calculateTotalFundingSum();
+        localStorage.setItem('supportTotalFundingSum', totalFundingSum.toFixed(2)); // Save as a string with 2 decimal places
+    }, [tableRows]);
+
     // Function to fetch the "For30Days" value for the selected grade from Firebase
     const fetchGradeFor30Days = async (selectedGrade) => {
         try {
