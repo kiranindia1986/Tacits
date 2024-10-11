@@ -4,7 +4,7 @@ import {
     TableContainer, TableHead, TableRow, Paper, CircularProgress, TablePagination
 } from '@mui/material';
 import { db } from '../firebaseConfig';  // Import Firebase config
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast, ToastContainer } from 'react-toastify';
@@ -13,8 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const SchoolManagement = () => {
     const [schoolCodes, setSchoolCodes] = useState([]);
     const [newSchoolCode, setNewSchoolCode] = useState('');
-    const [editId, setEditId] = useState(null);
-    const [editSchoolCode, setEditSchoolCode] = useState('');
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -56,13 +54,26 @@ const SchoolManagement = () => {
             setLoading(false);
             setNewSchoolCode('');
             toast.success('School code added successfully.');
-            window.location.reload(); // Reload to fetch updated list
+            // Reload the school codes list
+            const updatedData = await getDocs(schoolCodeCollectionRef);
+            setSchoolCodes(updatedData.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        }
+    };
+
+    // Delete school code
+    const deleteSchoolCode = async (id) => {
+        try {
+            await deleteDoc(doc(db, 'School', id));
+            setSchoolCodes(schoolCodes.filter(code => code.id !== id));
+            toast.success('School code deleted successfully.');
+        } catch (error) {
+            toast.error('Error deleting school code: ' + error.message);
         }
     };
 
     return (
-        <Box sx={{ padding: '5px 20px', textAlign: 'center' }}> {/* Adjusted padding */}
-            <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', color: '#333', marginTop: '-50px' }}> {/* Removed margin-top */}
+        <Box sx={{ padding: '5px 20px', textAlign: 'center' }}>
+            <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', color: '#333' }}>
                 Manage School Codes
             </Typography>
 
@@ -100,7 +111,7 @@ const SchoolManagement = () => {
                                 <TableCell sx={{ padding: '15px 20px', fontSize: '15px' }}>{code.Code}</TableCell>
                                 <TableCell align="right" sx={{ padding: '15px 20px' }}>
                                     <IconButton><EditIcon /></IconButton>
-                                    <IconButton><DeleteIcon /></IconButton>
+                                    <IconButton onClick={() => deleteSchoolCode(code.id)}><DeleteIcon /></IconButton>
                                 </TableCell>
                             </TableRow>
                         ))}
