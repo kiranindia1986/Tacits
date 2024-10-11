@@ -112,6 +112,21 @@ const OM = () => {
         localStorage.removeItem('OMTableData'); // Clear data from localStorage
     };
 
+    // Calculate the sum of the "Total Cost" column
+    const calculateTotalCostSum = () => {
+        return tableRows.reduce((sum, row) => {
+            const cost = parseFloat(row.totalCost) || 0; // Parse as float, default to 0 if invalid
+            return sum + cost;
+        }, 0);
+    };
+
+    // Save the total cost sum to localStorage whenever tableRows change
+    useEffect(() => {
+        const totalCostSum = calculateTotalCostSum();
+        localStorage.setItem('totalCostSum', totalCostSum.toFixed(2)); // Save as a string with 2 decimal places
+    }, [tableRows]);
+
+
     return (
         <Box sx={{ padding: '20px', position: 'relative', height: '100vh' }}>
 

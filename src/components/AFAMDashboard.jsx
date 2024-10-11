@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [selectedSchoolCode, setSelectedSchoolCode] = useState('');
     const [courses, setCourses] = useState([]);  // To store course listing data
     const [loading, setLoading] = useState(false);
+    const [totalRequested, setTotalRequested] = useState('0.00'); // State to store Total Requested
 
     const navigate = useNavigate();  // Use React Router's useNavigate for page navigation
     const auth = getAuth(); // Get Firebase Auth instance
@@ -33,10 +34,14 @@ const Dashboard = () => {
     // Load selected school code from local storage on mount
     useEffect(() => {
         const savedSchoolCode = localStorage.getItem('selectedSchoolCode');
+        const savedTotalRequested = localStorage.getItem('totalCostSum') || '0.00'; // Get total requested from localStorage
+
         if (savedSchoolCode) {
             setSelectedSchoolCode(savedSchoolCode);  // Set saved value if exists
             fetchCourses(savedSchoolCode);  // Fetch courses for the saved school code
         }
+        setTotalRequested(savedTotalRequested); // Set Total Requested state
+
     }, []);
 
     // Handle navigation to Master Data page
@@ -218,7 +223,7 @@ const Dashboard = () => {
                                             <TableCell>0</TableCell>
                                             <TableCell>3</TableCell>
                                             <TableCell>0</TableCell>
-                                            <TableCell>0.00</TableCell>
+                                            <TableCell>{`$${totalRequested}`}</TableCell> {/* Display Total Requested */}
                                             <TableCell>$0</TableCell>
                                             <TableCell>0%</TableCell>
                                         </TableRow>
