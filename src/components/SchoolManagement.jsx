@@ -4,7 +4,7 @@ import {
     TableContainer, TableHead, TableRow, Paper, CircularProgress, TablePagination
 } from '@mui/material';
 import { db } from '../firebaseConfig';  // Import Firebase config
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast, ToastContainer } from 'react-toastify';
@@ -16,6 +16,8 @@ const SchoolManagement = () => {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [editId, setEditId] = useState(null); // Track the ID of the school code being edited
+    const [editSchoolCode, setEditSchoolCode] = useState(''); // Track the value of the school code being edited
 
     const schoolCodeCollectionRef = collection(db, 'School'); // Firebase collection reference
 
@@ -71,6 +73,36 @@ const SchoolManagement = () => {
         }
     };
 
+    // Start editing a school code
+    const startEditing = (id, currentCode) => {
+        setEditId(id);
+        setEditSchoolCode(currentCode);
+    };
+
+    // Save the edited school code
+    const saveEdit = async () => {
+        if (editSchoolCode.trim()) {
+            try {
+                const schoolCodeDoc = doc(db, 'School', editId);
+                await updateDoc(schoolCodeDoc, { Code: editSchoolCode });
+                setSchoolCodes(schoolCodes.map(code =>
+                    code.id === editId ? { ...code, Code: editSchoolCode } : code
+                ));
+                setEditId(null);
+                setEditSchoolCode('');
+                toast.success('School code updated successfully.');
+            } catch (error) {
+                toast.error('Error updating school code: ' + error.message);
+            }
+        }
+    };
+
+    // Cancel editing
+    const cancelEdit = () => {
+        setEditId(null);
+        setEditSchoolCode('');
+    };
+
     return (
         <Box sx={{ padding: '5px 20px', textAlign: 'center' }}>
             <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', color: '#333' }}>
@@ -108,10 +140,29 @@ const SchoolManagement = () => {
                     <TableBody>
                         {schoolCodes.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((code) => (
                             <TableRow key={code.id} hover sx={{ '&:hover': { backgroundColor: '#f0f0f0' } }}>
-                                <TableCell sx={{ padding: '15px 20px', fontSize: '15px' }}>{code.Code}</TableCell>
+                                <TableCell sx={{ padding: '15px 20px', fontSize: '15px' }}>
+                                    {editId === code.id ? (
+                                        <TextField
+                                            value={editSchoolCode}
+                                            onChange={(e) => setEditSchoolCode(e.target.value)}
+                                            sx={{ width: '100%' }}
+                                        />
+                                    ) : (
+                                        code.Code
+                                    )}
+                                </TableCell>
                                 <TableCell align="right" sx={{ padding: '15px 20px' }}>
-                                    <IconButton><EditIcon /></IconButton>
-                                    <IconButton onClick={() => deleteSchoolCode(code.id)}><DeleteIcon /></IconButton>
+                                    {editId === code.id ? (
+                                        <>
+                                            <Button onClick={saveEdit} color="primary">Save</Button>
+                                            <Button onClick={cancelEdit} color="secondary">Cancel</Button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <IconButton onClick={() => startEditing(code.id, code.Code)}><EditIcon /></IconButton>
+                                            <IconButton onClick={() => deleteSchoolCode(code.id)}><DeleteIcon /></IconButton>
+                                        </>
+                                    )}
                                 </TableCell>
                             </TableRow>
                         ))}
