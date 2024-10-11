@@ -210,12 +210,16 @@ const Support = () => {
                     displayEmpty
                 >
                     <MenuItem value="">Select Grade</MenuItem>
-                    {grades.map((grade, index) => (
-                        <MenuItem key={index} value={grade}>
-                            {grade}
-                        </MenuItem>
-                    ))}
+                    {grades
+                        .slice() // Create a shallow copy of the array to avoid mutating the original
+                        .sort((a, b) => a.localeCompare(b)) // Sort the grades alphabetically
+                        .map((grade, index) => (
+                            <MenuItem key={index} value={grade}>
+                                {grade}
+                            </MenuItem>
+                        ))}
                 </Select>
+
                 <TextField
                     label="Quantity"
                     name="quantity"
