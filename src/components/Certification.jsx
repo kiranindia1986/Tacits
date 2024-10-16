@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField } from '@mui/material';
+import { Box, Typography, Button, InputLabel, FormControl, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebaseConfig'; // Import Firebase config
 import { collection, getDocs, query, where } from 'firebase/firestore'; // Firebase Firestore functions
@@ -295,14 +295,18 @@ const Certification = () => {
                     boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
                 }}
             >
-                <TextField
-                    label="Event"
-                    name="event"
-                    value={formData.event}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
+                <FormControl fullWidth variant="outlined">
+                    <InputLabel id="event-label">Event</InputLabel>
+                    <Select
+                        labelId="event-label"
+                        name="event"
+                        value={formData.event}  // Make sure formData.event is set to the correct value
+                        onChange={handleInputChange}
+                        label="Event"
+                    >
+                        <MenuItem value="Phase II certification">Phase II certification</MenuItem>
+                    </Select>
+                </FormControl>
                 <Select
                     name="agrAdosMday"
                     value={formData.agrAdosMday}
@@ -335,56 +339,122 @@ const Certification = () => {
                         ))}
                 </Select>
 
-                <TextField
-                    label="Quantity"
-                    name="quantity"
-                    value={formData.quantity}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Duration"
-                    name="duration"
-                    value={formData.duration}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="No Of Attendees"
-                    name="noOfAttendees"
-                    value={formData.noOfAttendees}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Travel Cost"
-                    name="travelCost"
-                    value={formData.travelCost}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Per Diem"
-                    name="perDiem"
-                    value={formData.perDiem}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Justification"
-                    name="justification"
-                    value={formData.justification}
-                    onChange={handleInputChange}
-                    multiline
-                    rows={2}
-                    variant="outlined"
-                    fullWidth
-                />
+                <FormControl fullWidth variant="outlined">
+                    <InputLabel id="quantity-label">Quantity</InputLabel>
+                    <Select
+                        labelId="quantity-label"
+                        name="quantity"
+                        value={formData.quantity}  // Make sure formData.quantity is set to the correct value
+                        onChange={handleInputChange}
+                        label="Quantity"
+                    >
+                        <MenuItem value="">Please Select Quantity</MenuItem> {/* Optional: Default option */}
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                    </Select>
+                </FormControl>
+
+
+                <FormControl fullWidth variant="outlined">
+                    <InputLabel id="duration-label">Duration</InputLabel>
+                    <Select
+                        labelId="duration-label"
+                        name="duration"
+                        value={formData.duration}  // Make sure formData.duration is set to the correct value
+                        onChange={handleInputChange}
+                        label="Duration"
+                    >
+                        <MenuItem value="">Please Select Duration</MenuItem> {/* Optional default */}
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={11}>11</MenuItem>
+                        <MenuItem value={12}>12</MenuItem>
+                        <MenuItem value={13}>13</MenuItem>
+                        <MenuItem value={14}>14</MenuItem>
+                        <MenuItem value={15}>15</MenuItem>
+                        <MenuItem value={16}>16</MenuItem>
+                    </Select>
+                </FormControl>
+
+
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="noOfAttendees-label">No Of Attendees</InputLabel>
+                    <Select
+                        labelId="noOfAttendees-label"
+                        name="noOfAttendees"
+                        value={formData.noOfAttendees}
+                        onChange={handleInputChange}
+                        label="No Of Attendees"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="travelCost-label">Travel Cost</InputLabel>
+                    <Select
+                        labelId="travelCost-label"
+                        name="travelCost"
+                        value={formData.travelCost}
+                        onChange={handleInputChange}
+                        label="Travel Cost"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={700}>700</MenuItem>
+                        <MenuItem value={750}>750</MenuItem>
+                        <MenuItem value={800}>800</MenuItem>
+                        <MenuItem value={850}>850</MenuItem>
+                        <MenuItem value={900}>900</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="perDiem-label">Per Diem</InputLabel>
+                    <Select
+                        labelId="perDiem-label"
+                        name="perDiem"
+                        value={formData.perDiem}
+                        onChange={handleInputChange}
+                        label="Per Diem"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={48}>48</MenuItem>
+                        <MenuItem value={96}>96</MenuItem>
+                        <MenuItem value={192}>192</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="justification-label">Justification</InputLabel>
+                    <Select
+                        labelId="justification-label"
+                        name="justification"
+                        value={formData.justification}
+                        onChange={handleInputChange}
+                        label="Justification"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value="The instructor could maybe learn something new.">
+                            The instructor could maybe learn something new.
+                        </MenuItem>
+                        <MenuItem value="It sounds like a good opportunity for them to get out of the office.">
+                            It sounds like a good opportunity for them to get out of the office.
+                        </MenuItem>
+                        <MenuItem value="The E-6 instructor must attend the Phase II class to become certified and serve as an assistant instructor, ensuring the unit has qualified personnel to meet future training demands.">
+                            The E-6 instructor must attend the Phase II class to become certified and serve as an assistant instructor, ensuring the unit has qualified personnel to meet future training demands.
+                        </MenuItem>
+                    </Select>
+                </FormControl>
+
+
 
                 {/* Move Add Button to the right */}
                 <Box sx={{ gridColumn: 'span 4', textAlign: 'right' }}>

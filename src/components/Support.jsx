@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField } from '@mui/material';
+import { Box, Typography, Button, Table, TableBody, InputLabel, FormControl, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebaseConfig'; // Import Firebase config
 import { collection, getDocs, query, where } from 'firebase/firestore'; // Firebase Firestore functions
@@ -237,56 +237,118 @@ const Support = () => {
                         ))}
                 </Select>
 
-                <TextField
-                    label="Quantity"
-                    name="quantity"
-                    value={formData.quantity}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Iterations Of Travel"
-                    name="iterationsOfTravel"
-                    value={formData.iterationsOfTravel}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Support Duration"
-                    name="supportDuration"
-                    value={formData.supportDuration}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Travel Cost"
-                    name="travelCost"
-                    value={formData.travelCost}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Per Diem"
-                    name="perDiem"
-                    value={formData.perDiem}
-                    onChange={handleInputChange}
-                    variant="outlined"
-                    fullWidth
-                />
-                <TextField
-                    label="Justification"
-                    name="justification"
-                    value={formData.justification}
-                    onChange={handleInputChange}
-                    multiline
-                    rows={2}
-                    variant="outlined"
-                    fullWidth
-                />
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="quantity-label">Quantity</InputLabel>
+                    <Select
+                        labelId="quantity-label"
+                        name="quantity"
+                        value={formData.quantity}
+                        onChange={handleInputChange}
+                        label="Quantity"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="iterationsOfTravel-label">Iterations Of Travel</InputLabel>
+                    <Select
+                        labelId="iterationsOfTravel-label"
+                        name="iterationsOfTravel"
+                        value={formData.iterationsOfTravel}
+                        onChange={handleInputChange}
+                        label="Iterations Of Travel"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="supportDuration-label">Support Duration</InputLabel>
+                    <Select
+                        labelId="supportDuration-label"
+                        name="supportDuration"
+                        value={formData.supportDuration}
+                        onChange={handleInputChange}
+                        label="Support Duration"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                        <MenuItem value={6}>6</MenuItem>
+                        <MenuItem value={7}>7</MenuItem>
+                        <MenuItem value={8}>8</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="travelCost-label">Travel Cost</InputLabel>
+                    <Select
+                        labelId="travelCost-label"
+                        name="travelCost"
+                        value={formData.travelCost}
+                        onChange={handleInputChange}
+                        label="Travel Cost"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={875}>875</MenuItem>
+                        <MenuItem value={900}>900</MenuItem>
+                        <MenuItem value={975}>975</MenuItem>
+                        <MenuItem value={1000}>1000</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="perDiem-label">Per Diem</InputLabel>
+                    <Select
+                        labelId="perDiem-label"
+                        name="perDiem"
+                        value={formData.perDiem}
+                        onChange={handleInputChange}
+                        label="Per Diem"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value={400}>400</MenuItem>
+                        <MenuItem value={680}>680</MenuItem>
+                        <MenuItem value={960}>960</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="justification-label">Justification</InputLabel>
+                    <Select
+                        labelId="justification-label"
+                        name="justification"
+                        value={formData.justification}
+                        onChange={handleInputChange}
+                        label="Justification"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value="It would probably be good if they showed up, just in case.">
+                            It would probably be good if they showed up, just in case.
+                        </MenuItem>
+                        <MenuItem value="Participation of the O-2 Fire Direction Officer and E-5 medic is essential for executing live-fire exercises, ensuring safe, high-quality training that aligns with course requirements.">
+                            Participation of the O-2 Fire Direction Officer and E-5 medic is essential for executing live-fire exercises, ensuring safe, high-quality training that aligns with course requirements.
+                        </MenuItem>
+                        <MenuItem value="Having more people there might make it more fun">
+                            Having more people there might make it more fun
+                        </MenuItem>
+                    </Select>
+                </FormControl>
+
 
                 {/* Move Add Button to the right */}
                 <Box sx={{ gridColumn: 'span 4', textAlign: 'right' }}>

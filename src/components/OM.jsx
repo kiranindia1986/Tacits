@@ -31,6 +31,12 @@ const OM = () => {
 
     const [course, setCourse] = useState(getSavedCourseData());
     const [categories, setCategories] = useState([]);
+    const [items, setItems] = useState([]);
+    const [quantities, setQuantity] = useState([]);
+    const [costs, setCost] = useState([]);
+    const [justifications, setJustification] = useState([]);
+
+
     const [radioValue, setRadioValue] = useState('spread'); // Default to 'Spread Across Training Program'
     const [formData, setFormData] = useState({
         category: '',
@@ -53,6 +59,55 @@ const OM = () => {
         };
         fetchCategories();
     }, []);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const itemData = await getDocs(collection(db, 'Items')); // Fetch 'Categories' collection
+                setItems(itemData.docs.map(doc => doc.data().Item)); // Assuming 'Category' is the field for categories
+            } catch (error) {
+                console.error("Error fetching items: ", error);
+            }
+        };
+        fetchItems();
+    }, []);
+
+    useEffect(() => {
+        const fetchQuantity = async () => {
+            try {
+                const quantityData = await getDocs(collection(db, 'Quantities')); // Fetch 'Categories' collection
+                setQuantity(quantityData.docs.map(doc => doc.data().Quantity)); // Assuming 'Category' is the field for categories
+            } catch (error) {
+                console.error("Error fetching quantity: ", error);
+            }
+        };
+        fetchQuantity();
+    }, []);
+
+    useEffect(() => {
+        const fetchCost = async () => {
+            try {
+                const costData = await getDocs(collection(db, 'TotalCosts')); // Fetch 'Categories' collection
+                setCost(costData.docs.map(doc => doc.data().TotalCost)); // Assuming 'Category' is the field for categories
+            } catch (error) {
+                console.error("Error fetching costs: ", error);
+            }
+        };
+        fetchCost();
+    }, []);
+
+    useEffect(() => {
+        const fetchJustification = async () => {
+            try {
+                const JustificationData = await getDocs(collection(db, 'Justifications')); // Fetch 'Categories' collection
+                setJustification(JustificationData.docs.map(doc => doc.data().Justification)); // Assuming 'Category' is the field for categories
+            } catch (error) {
+                console.error("Error fetching justifications: ", error);
+            }
+        };
+        fetchJustification();
+    }, []);
+
 
     // Save the table data to localStorage whenever tableRows change
     useEffect(() => {
@@ -234,40 +289,72 @@ const OM = () => {
                         </MenuItem>
                     ))}
                 </Select>
-                <TextField
-                    label="Item"
+
+                <Select
                     name="item"
                     value={formData.item}
                     onChange={handleInputChange}
-                    variant="outlined"
                     fullWidth
-                />
-                <TextField
-                    label="Quantity"
+                    variant="outlined"
+                    displayEmpty
+                >
+                    <MenuItem value="">Select a Item</MenuItem>
+                    {items.map((item, index) => (
+                        <MenuItem key={index} value={item}>
+                            {item}
+                        </MenuItem>
+                    ))}
+                </Select>
+
+                <Select
                     name="quantity"
                     value={formData.quantity}
                     onChange={handleInputChange}
-                    variant="outlined"
                     fullWidth
-                />
-                <TextField
-                    label="Total Cost"
+                    variant="outlined"
+                    displayEmpty
+                >
+                    <MenuItem value="">Select a Quantity</MenuItem>
+                    {quantities.map((quantity, index) => (
+                        <MenuItem key={index} value={quantity}>
+                            {quantity}
+                        </MenuItem>
+                    ))}
+                </Select>
+
+                <Select
                     name="totalCost"
-                    value={formData.totalCost}
+                    value={formData.cost}
                     onChange={handleInputChange}
-                    variant="outlined"
                     fullWidth
-                />
-                <TextField
-                    label="Justification"
+                    variant="outlined"
+                    displayEmpty
+                >
+                    <MenuItem value="">Select a Cost</MenuItem>
+                    {costs.map((cost, index) => (
+                        <MenuItem key={index} value={cost}>
+                            {cost}
+                        </MenuItem>
+                    ))}
+                </Select>
+
+                <Select
                     name="justification"
                     value={formData.justification}
                     onChange={handleInputChange}
-                    multiline
-                    rows={2}
-                    variant="outlined"
                     fullWidth
-                />
+                    variant="outlined"
+                    displayEmpty
+                >
+                    <MenuItem value="">Select a Justification</MenuItem>
+                    {justifications.map((justification, index) => (
+                        <MenuItem key={index} value={justification}>
+                            {justification}
+                        </MenuItem>
+                    ))}
+                </Select>
+
+
 
                 {/* Radio Buttons for Spread and Funding Months */}
                 <Box sx={{ gridColumn: 'span 4' }}>
