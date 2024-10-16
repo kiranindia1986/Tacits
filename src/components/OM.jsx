@@ -339,27 +339,6 @@ const OM = () => {
                     ))}
                 </Select>
 
-                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
-                    <InputLabel id="totalCost-label">Cost</InputLabel>
-                    <Select
-                        labelId="totalCost-label"
-                        name="totalCost"
-                        value={formData.cost}
-                        onChange={handleInputChange}
-                        label="totalCost"
-                    >
-                        <MenuItem value="">Please Select</MenuItem>
-                        <MenuItem value=" We need funding for repairs because the equipment has been used a lot and might break soon.">
-                            We need funding for repairs because the equipment has been used a lot and might break soon.
-                        </MenuItem>
-                        <MenuItem value="The requested O&M funding for equipment repair and maintenance ensures all Howitzers and the M992 vehicle remain fully operational, directly supporting critical training phases and mission readiness.">
-                            The requested O&M funding for equipment repair and maintenance ensures all Howitzers and the M992 vehicle remain fully operational, directly supporting critical training phases and mission readiness.
-                        </MenuItem>
-                        <MenuItem value="Things break sometimes, so repairs might be a good idea.">
-                            Things break sometimes, so repairs might be a good idea.
-                        </MenuItem>
-                    </Select>
-                </FormControl>
 
                 <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
                     <InputLabel id="justification-label">Justification</InputLabel>
