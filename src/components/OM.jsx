@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import { Box, Typography, Button, Table, FormControl, InputLabel, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebaseConfig'; // Make sure you import your Firebase config
 import { collection, getDocs } from 'firebase/firestore'; // Firebase Firestore functions
@@ -43,6 +43,7 @@ const OM = () => {
         item: '',
         quantity: '',
         totalCost: '',
+        cost: '',
         justification: ''
     });
     const [tableRows, setTableRows] = useState(getSavedTableData());
@@ -338,21 +339,27 @@ const OM = () => {
                     ))}
                 </Select>
 
-                <Select
-                    name="justification"
-                    value={formData.justification}
-                    onChange={handleInputChange}
-                    fullWidth
-                    variant="outlined"
-                    displayEmpty
-                >
-                    <MenuItem value="">Select a Justification</MenuItem>
-                    {justifications.map((justification, index) => (
-                        <MenuItem key={index} value={justification}>
-                            {justification}
+                <FormControl fullWidth variant="outlined" sx={{ marginBottom: '20px' }}>
+                    <InputLabel id="justification-label">Justification</InputLabel>
+                    <Select
+                        labelId="justification-label"
+                        name="justification"
+                        value={formData.justification}
+                        onChange={handleInputChange}
+                        label="Justification"
+                    >
+                        <MenuItem value="">Please Select</MenuItem>
+                        <MenuItem value=" We need funding for repairs because the equipment has been used a lot and might break soon.">
+                            We need funding for repairs because the equipment has been used a lot and might break soon.
                         </MenuItem>
-                    ))}
-                </Select>
+                        <MenuItem value="The requested O&M funding for equipment repair and maintenance ensures all Howitzers and the M992 vehicle remain fully operational, directly supporting critical training phases and mission readiness.">
+                            The requested O&M funding for equipment repair and maintenance ensures all Howitzers and the M992 vehicle remain fully operational, directly supporting critical training phases and mission readiness.
+                        </MenuItem>
+                        <MenuItem value="Things break sometimes, so repairs might be a good idea.">
+                            Things break sometimes, so repairs might be a good idea.
+                        </MenuItem>
+                    </Select>
+                </FormControl>
 
 
 
