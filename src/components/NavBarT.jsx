@@ -18,12 +18,7 @@ const NavBar = () => {
 
             {/* Right side buttons */}
             <div className="navbar-buttons">
-                <button
-                    className="dashboard-button"
-                    onClick={() => navigate("/AFAMDashboard")} // Add navigation to Dashboard
-                >
-                    GOTO AFAM
-                </button>
+
                 <button
                     className="dashboard-button"
                     onClick={() => navigate("/tacitsDashboard")} // Add navigation to Dashboard

@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Tacits />} />
         <Route path="/login" element={<Login />} />
         <Route path="/AFAMDashboard" element={<Dashboard />} />
 
