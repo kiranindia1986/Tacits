@@ -4,6 +4,8 @@ import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "./NavBarT";
+import * as XLSX from "xlsx"; // Import xlsx for Excel generation
+
 
 const ChangeRequirements = () => {
     const [requirements, setRequirements] = useState([]); // State to store requirements data
@@ -32,6 +34,45 @@ const ChangeRequirements = () => {
         navigate("/CourseDetails", { state: { courseData: req, selectedSchool } });
     };
 
+    // Function to download data as Excel file
+    const handleDownloadExcel = () => {
+        const headers = [
+            'QS', 'School Code', 'Level', 'CP', 'Orig 2016 Req', 'Avg 2017 Req', 'Avg 2010-2012 Req',
+            'Inputs 2012', 'Current TRAP', 'Adjusted 2014 Req', 'FY 2016 Req', 'FY 2016 Last LID',
+            'FY 2017 Req', 'FY 2017 Last LID', 'Highest Inputs 2010-2012', 'Years With Inputs', 'Remarks'
+        ];
+
+        const data = requirements.map((req) => ({
+            QS: req.qs || '', // Adjust the field mapping as per your data structure
+            'School Code': req.schoolCode || '',
+            Level: req.level || '',
+            CP: req.cp || '',
+            'Orig 2016 Req': req.orig2016Req || '',
+            'Avg 2017 Req': req.avg2017Req || '',
+            'Avg 2010-2012 Req': req.avg2010_2012Req || '',
+            'Inputs 2012': req.inputs2012 || '',
+            'Current TRAP': req.currentTRAP || '',
+            'Adjusted 2014 Req': req.adjusted2014Req || '',
+            'FY 2016 Req': req.fy2016Req || '',
+            'FY 2016 Last LID': req.fy2016LastLID || '',
+            'FY 2017 Req': req.fy2017Req || '',
+            'FY 2017 Last LID': req.fy2017LastLID || '',
+            'Highest Inputs 2010-2012': req.highestInputs2010_2012 || '',
+            'Years With Inputs': req.yearsWithInputs || '',
+            Remarks: req.remarks || ''
+        }));
+
+        // Create a new worksheet
+        const ws = XLSX.utils.json_to_sheet(data, { header: headers });
+
+        // Create a new workbook
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Change Requirements");
+
+        // Export to Excel file
+        XLSX.writeFile(wb, "Change_Requirements.xlsx");
+    };
+
     return (
         <>
             <NavBar />
@@ -42,7 +83,7 @@ const ChangeRequirements = () => {
                     <Button variant="contained" color="secondary" onClick={() => navigate(-1)}>
                         Back
                     </Button>
-                    <Button variant="contained" color="primary" onClick={() => console.log("Download Excel")}>
+                    <Button variant="contained" color="primary" onClick={handleDownloadExcel}>
                         Download Excel
                     </Button>
                 </Box>
