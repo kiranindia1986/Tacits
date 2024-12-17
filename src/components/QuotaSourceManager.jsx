@@ -5,7 +5,10 @@ import NavBar from "./NavBarT";
 import { db } from "../firebaseConfig"; // Import your Firebase configuration
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 import { toast } from 'react-toastify';
-
+import {
+    Box, Typography, CircularProgress, Table, TableBody, TableCell,
+    TableContainer, TableHead, TableRow, Paper, FormControl, InputLabel, Select, MenuItem, CssBaseline, Button
+} from '@mui/material';
 
 const QuotaSourceManager = () => {
     const [schoolData, setSchoolData] = useState([]); // State to store school data
@@ -103,19 +106,26 @@ const QuotaSourceManager = () => {
                 </div>
 
                 <div className="quota-dropdown-container">
-                    <select
-                        id="quotaSourceDropdown"
-                        className="quota-dropdown"
-                        value={selectedSchool} // Bind to selected value
-                        onChange={(e) => setSelectedSchool(e.target.value)} // Update the selected value on change
-                    >
-                        <option value=""> -- Select Options -- </option>
-                        {schoolData.map((school) => (
-                            <option key={school.id} value={school.field}> {/* Assuming "field" is the name of the school */}
-                                {school.field}
-                            </option>
-                        ))}
-                    </select>
+                    <FormControl fullWidth variant="outlined" size="small" style={{ marginTop: "1rem" }}>
+                        <InputLabel id="quota-source-label">Select Quota Source</InputLabel>
+                        <Select
+                            labelId="quota-source-label"
+                            id="quotaSourceDropdown"
+                            value={selectedSchool}
+                            onChange={(e) => setSelectedSchool(e.target.value)}
+                            label="Select Quota Source"
+                        >
+                            <MenuItem value="">
+                                <em>-- Select Options --</em>
+                            </MenuItem>
+                            {schoolData.map((school) => (
+                                <MenuItem key={school.id} value={school.field}>
+                                    {school.field}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
                 </div>
 
                 <div className="container">
