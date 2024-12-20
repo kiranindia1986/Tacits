@@ -6,6 +6,7 @@ import { db } from "../firebaseConfig"; // Import your Firebase configuration
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 import { toast } from 'react-toastify';
 import {
+    Radio, RadioGroup, FormControlLabel,
     Box, Typography, CircularProgress, Table, TableBody, TableCell,
     TableContainer, TableHead, TableRow, Paper, FormControl, InputLabel, Select, MenuItem, CssBaseline, Button
 } from '@mui/material';
@@ -56,6 +57,7 @@ const QuotaSourceManager = () => {
                             item.field !== "Add New Requirements"
                     ),
                 ];
+                console.log(sortedStep2List);
 
                 setStep2Data(sortedStep2List); // Set the state with sorted data
             } catch (error) {
@@ -136,27 +138,19 @@ const QuotaSourceManager = () => {
                                 <h5 className="rounded-info-box bg-info text-white">Step 2</h5>
                                 <p className="step-description">The next step is to choose what you want to do.</p>
 
-                                {step2Data.map((option, index) => (
-                                    <div className="row" key={index} style={{ marginTop: "1%" }}>
-                                        <div className="col-md-12">
-                                            <input
-                                                type="radio"
-                                                name="step2Options"
-                                                id={option.field}
-                                                value={option.field}
-                                                className="form-check-input"
-                                                checked={selectedStep2Option === option.field}
-                                                onChange={() => setSelectedStep2Option(option.field)} // Set the selected value
-                                            />
-                                            <label
-                                                className="option-label form-check-label"
-                                                htmlFor={option.field}
-                                            >
-                                                {option.field}
-                                            </label>
-                                        </div>
-                                    </div>
-                                ))}
+                                <RadioGroup
+                                    value={selectedStep2Option}
+                                    onChange={(e) => setSelectedStep2Option(e.target.value)} // Handle value change
+                                >
+                                    {step2Data.map((option) => (
+                                        <FormControlLabel
+                                            key={option.id} // Use unique ID as the key
+                                            value={option.field} // Value for the radio button
+                                            control={<Radio />}
+                                            label={option.field} // Label for the radio button
+                                        />
+                                    ))}
+                                </RadioGroup>
                             </div>
                         </div>
 
