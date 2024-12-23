@@ -138,19 +138,25 @@ const QuotaSourceManager = () => {
                                 <h5 className="rounded-info-box bg-info text-white">Step 2</h5>
                                 <p className="step-description">The next step is to choose what you want to do.</p>
 
-                                <RadioGroup
+                                <Select
+                                    labelId="step2-options-label"
+                                    id="step2OptionsDropdown"
                                     value={selectedStep2Option}
-                                    onChange={(e) => setSelectedStep2Option(e.target.value)} // Handle value change
+                                    onChange={(e) => setSelectedStep2Option(e.target.value)}
+                                    label="Select Step 2 Option"
+                                    sx={{ width: 400 }} // Set default width here
                                 >
+                                    <MenuItem value="">
+                                        <em>-- Select Options --</em>
+                                    </MenuItem>
                                     {step2Data.map((option) => (
-                                        <FormControlLabel
-                                            key={option.id} // Use unique ID as the key
-                                            value={option.field} // Value for the radio button
-                                            control={<Radio />}
-                                            label={option.field} // Label for the radio button
-                                        />
+                                        <MenuItem key={option.id} value={option.field}>
+                                            {option.field}
+                                        </MenuItem>
                                     ))}
-                                </RadioGroup>
+                                </Select>
+
+
                             </div>
                         </div>
 
